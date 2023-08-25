@@ -1,0 +1,102 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      meshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile "cylinder.fms";
+
+//minCellSize 1e-8;
+
+maxCellSize 8e-6;
+
+//boundaryCellSize 0.5e-5;
+
+objectRefinements
+{
+
+}
+
+localRefinement
+{
+  cylinder
+  {
+    additionalRefinementLevels 5;
+    refinementThickness 5.0e-6;
+  }
+
+}
+
+boundaryLayers
+{
+
+    patchBoundaryLayers
+    {
+      cylinder
+      {
+        nLayers 20;
+
+        thicknessRatio 1.2;
+
+        maxFirstLayerThickness 5e-6;
+
+        allowDiscontinuity 1;
+
+          optimiseLayer 1;
+      }
+
+    }
+}
+
+renameBoundary
+{
+  newPatchNames
+  {
+    xMin
+    {
+      newName inlet;
+      type patch;
+    }
+
+    xMax
+    {
+      newName outlet;
+      type patch;
+    }
+    yMin
+    {
+      newName sidewall2;
+      type wall;
+    }
+
+    yMax
+    {
+      newName sidewall1;
+      type wall;
+    }
+
+    zMin
+    {
+      newName lowerwall;
+      type patch;
+    }
+
+    zMax
+    {
+      newName upperwall;
+      type wall;
+    }
+  }
+}
+
+// ************************************************************************* //
