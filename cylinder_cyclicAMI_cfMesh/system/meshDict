@@ -88,7 +88,7 @@ renameBoundary
     zMin
     {
       newName lowerwall;
-      type patch;
+      type wall;
     }
 
     zMax
